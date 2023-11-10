@@ -127,19 +127,19 @@ class TransactionReceipt {
                 .toList()
             : [];
 
-  Map<String,dynamic> get map => {
-    'transactionHash': bytesToHex(transactionHash),
-    'transactionIndex': transactionIndex,
-    'blockHash': bytesToHex(blockHash),
-    'blockNumber': blockNumber.toString(),
-    'from': from?.hex,
-    'to': to?.hex,
-    'cumulativeGasUsed': cumulativeGasUsed.toString(),
-    'gasUsed': gasUsed?.toString(),
-    'effectiveGasPrice': effectiveGasPrice?.getInWei.toString(),
-    'contractAddress': contractAddress?.hex,
-    'status': status,
-  };
+  Map<String, dynamic> get map => {
+        'transactionHash': bytesToHex(transactionHash, include0x: true),
+        'transactionIndex': transactionIndex,
+        'blockHash': bytesToHex(blockHash, include0x: true),
+        'blockNumber': blockNumber.toString(),
+        'from': from?.hex,
+        'to': to?.hex,
+        'cumulativeGasUsed': cumulativeGasUsed.toString(),
+        'gasUsed': gasUsed?.toString(),
+        'effectiveGasPrice': effectiveGasPrice?.getInWei.toString(),
+        'contractAddress': contractAddress?.hex,
+        'status': (status ?? false) ? '0x1' : '0x0',
+      };
 
   /// Hash of the transaction (32 bytes).
   final Uint8List transactionHash;
